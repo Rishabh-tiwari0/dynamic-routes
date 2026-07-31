@@ -1,37 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import StudentCard from "./components/StudentCard";
-import students from "./data/data";
+import Students from "./data/data";
 import StudentDetail from "./pages/StudentDetail";
+import { useStudentContext } from "./ContextAPI/StudentContext";
+import Component1 from "./components/Component1";
 
 const App = () => {
-  const [getStudent, setStudent] = useState([...students]);
-  const [stu, setStu] = useState();
-  console.log(stu);
+  const { students, setStudents } = useStudentContext();
 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
-          >
-            {getStudent.map((student) => (
-              <StudentCard student={student} key={student.id} setStu={setStu} />
-            ))}
-          </div>
-        }
-      />
+  useEffect(() => {
+    setStudents([...Students]);
+  }, []);
 
-      <Route path="/:name" element={<StudentDetail student={stu} />} />
-    </Routes>
-  );
+  // return (
+
+  //   <Routes>
+  //     <Route
+  //       path="/"
+  //       element={
+  //         <div
+  //           style={{
+  //             display: "flex",
+  //             flexWrap: "wrap",
+  //             justifyContent: "center",
+  //             cursor: "pointer",
+  //           }}
+  //         >
+  //           {students.map((student) => (
+  //             <StudentCard student={student} key={student.id} />
+  //           ))}
+  //         </div>
+  //       }
+  //     />
+
+  //     <Route path="/name" element={<StudentDetail />} />
+  //   </Routes>
+  // );
+  return <Component1 />;
 };
 
 export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const StudentCard = ({ student, setStu }) => {
+const StudentCard = ({ student }) => {
   const cardStyle = {
     maxWidth: "320px",
     margin: "24px",
@@ -37,12 +37,7 @@ const StudentCard = ({ student, setStu }) => {
   };
 
   return (
-    <div
-      style={cardStyle}
-      onClick={(e) => {
-        setStu(student);
-      }}
-    >
+    <div style={cardStyle}>
       <h1 style={headingStyle}>{student.name}</h1>
       <h2 style={subheadingStyle}>
         <span style={labelStyle}>Roll No :</span> {student.rollNumber}
